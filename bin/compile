@@ -64,6 +64,7 @@ IFS=':' BUILDPACK_RUN_COMMANDS=($BUILDPACK_RUN_COMMANDS)
 # Run commands
 for BUILDPACK_RUN_CMD in ${BUILDPACK_RUN_COMMANDS[@]}; do
   echo "Running: $BUILDPACK_RUN_CMD" | arrow
+  chmod +x $BUILDPACK_RUN_CONFIG_FILE
   . "$BUILDPACK_RUN_CONFIG_FILE"
   eval "$BUILDPACK_RUN_CMD" || {
     echo "Aborting: '$BUILDPACK_RUN_CMD' exited with exit code $?" | arrow-err
